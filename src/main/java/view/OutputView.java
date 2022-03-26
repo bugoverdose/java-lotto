@@ -67,23 +67,23 @@ public class OutputView {
 
     private static String formatLottoResult(LottoResult lottoResult, int count) {
         return format(MATCH_COUNT_TEXT_FORMAT, lottoResult.getMatchCount())
-                + bonusBallInfo(lottoResult.getHasBonus())
+                + bonusBallInfo(lottoResult)
                 + format(PRIZE_TEXT_FORMAT, lottoResult.getPrize())
                 + format(LOTTO_RESULTS_COUNT_TEXT_FORMAT, count);
     }
 
-    private static String bonusBallInfo(boolean hasBonus) {
-        if (hasBonus) {
+    private static String bonusBallInfo(LottoResult lottoResult) {
+        if (lottoResult.getHasBonus()) {
             return BONUS_BALL_MATCH_TEXT;
         }
         return BLANK_SPACE;
     }
 
-    public static void printPrizePriceRatio(float prizePriceRatio) {
-        print(format(PRIZE_PRICE_RATIO_TEXT_FORMAT, prizePriceRatio));
+    public static void printPrizePriceRatio(float value) {
+        print(format(PRIZE_PRICE_RATIO_TEXT_FORMAT, value));
     }
 
-    private static <T> String format(String stringFormat, T value) {
+    private static String format(String stringFormat, Object value) {
         return String.format(stringFormat, value);
     }
 
